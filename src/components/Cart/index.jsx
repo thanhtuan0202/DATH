@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";
-import { PRODUCTS } from "../../products";
-import { CartItem } from "./cart-item";
+import { PRODUCTS } from "../ProductItem/products";
+import { CartItem } from "../CartItem/cart-item";
 import { useNavigate } from "react-router-dom";
 
 import "./cart.css";
@@ -39,7 +39,7 @@ export const Cart = () => {
           </button>
         </div>
       ) : (
-        <h1> Your Shopping Cart is Empty</h1>
+        <h1> Giỏ hàng trống. Vui lòng thêm sản phẩm!!</h1>
       )}
     </div>
   );

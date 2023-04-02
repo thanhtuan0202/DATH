@@ -1,0 +1,34 @@
+.footer {
+    padding: 20px 10px;
+    background-color: #ffc42e;
+}
+.footer__first li {
+  list-style-type: none;
+}
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+.footer__title {
+      color: rgb(0, 0, 0);
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0px 0px 15px;
+}
+  
+.footer__links li + li {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+}
+  
+.footer__links li i {
+      margin-right: 15px;
+      color: orange;
+      width: 14px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+  
