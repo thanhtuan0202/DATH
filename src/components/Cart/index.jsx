@@ -1,46 +1,44 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../../context/shop-context";
-import { PRODUCTS } from "../ProductItem/products";
-import { CartItem } from "../CartItem/cart-item";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import CartItem from "../CartItem"
+import TotalItemOrder from "../TotalItemOrder";
+import "./style.css";
 
-import "./cart.css";
-export const Cart = () => {
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
-  const totalAmount = getTotalCartAmount();
-
-  const navigate = useNavigate();
-
+export default function Cart() {
+  const cart = useSelector((state) => state.todoCart.cartItem);
+  console.log(cart);
+  useEffect(() => {}, [cart]);
   return (
-    <div className="cart">
-      <div>
-        <h1>Your Cart Items</h1>
-      </div>
-      <div className="cart">
-        {PRODUCTS.map((product) => {
-          if (cartItems[product.id] !== 0) {
-            return <CartItem data={product} />;
-          }
-        })}
-      </div>
-
-      {totalAmount > 0 ? (
-        <div className="checkout">
-          <p> Subtotal: ${totalAmount} </p>
-          <button onClick={() => navigate("/")}> Continue Shopping </button>
-          <button
-            onClick={() => {
-              checkout();
-              navigate("/checkout");
-            }}
-          >
-            {" "}
-            Checkout{" "}
-          </button>
+    <div>
+      <div className="cart-area pd-top-120 pd-bottom-120">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-12">
+              <div className="table-responsive mb-4">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th className="blank" />
+                      <th className="blank" />
+                      <th className="title-name">Sản phẩm</th>
+                      <th scope="col">Giá</th>
+                      <th scope="col">Số lượng</th>
+                      <th>Tổng tiền</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.map((item, index) => {
+                      return <CartItem key={index} data={item} />;
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div className="col-8"></div>
+            <TotalItemOrder />
+          </div>
         </div>
-      ) : (
-        <h1> Giỏ hàng trống. Vui lòng thêm sản phẩm!!</h1>
-      )}
+      </div>
     </div>
   );
-};
+}

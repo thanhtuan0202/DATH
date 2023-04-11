@@ -1,26 +1,15 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
 
 import { Navbar } from '../../components/Navbar/navbar';
 import FooterClient from '../../components/FooterClient';
-
 function LayoutHome(props) {
     return (
-      <>
+      <div className="App">
         <Navbar />
         {props.children}
         <FooterClient />
-      </>
+      </div>
     );
     
   }
-export default class HomeTemplate extends Component {
-    render() {
-      const { exact, path, component } = this.props;
-      return (
-        <LayoutHome>
-          <Route exact={exact} path={path} component={component} />
-        </LayoutHome>
-      );
-    }
-}
+export default LayoutHome

@@ -1,29 +1,30 @@
+import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar/navbar";
-import Banner from "./components/Banner";
-import { ProductList } from "./components/ProductList";
-import { ShopContextProvider } from "./context/shop-context";
-import FooterClient from "./components/FooterClient";
-import { Cart } from "./components/Cart";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 import { RouteHome} from "./router"
+import LayoutHome from "./container/client"
+import { ShopContextProvider } from "./context/shop-context";
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <ShopContextProvider>
-        <Router>
-          <Navbar/>
-          <Banner/>
-          <Routes>
-            <Route path="/" element={<ProductList />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-          <FooterClient />
-        </Router>
+      <BrowserRouter>
+        <Routes> {
+          RouteHome.map((item, index) => {
+            const Page = item.component
+            return (
+              <Route key={index} exact= {item.exact} path={item.path} element=  { <LayoutHome> <Page/> </LayoutHome>}/>
+            );
+          })} 
+        </Routes>
+      </BrowserRouter>
       </ShopContextProvider>
     </div>
   );
 }
-
 export default App;

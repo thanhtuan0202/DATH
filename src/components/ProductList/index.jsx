@@ -1,6 +1,6 @@
 import React from "react";
 import { PRODUCTS } from "../ProductItem/products";
-import { Product } from "../ProductItem";
+import  Product  from "../ProductItem";
 import Sidebar  from "../Sidebar";
 import "./style.css";
 
