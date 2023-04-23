@@ -8,7 +8,7 @@ import {
 import { RouteHome} from "./router"
 import LayoutHome from "./container/client"
 import { ShopContextProvider } from "./context/shop-context";
-
+import { Fragment } from "react";
 function App() {
   return (
     <div >
@@ -17,9 +17,16 @@ function App() {
         <Routes> {
           RouteHome.map((item, index) => {
             const Page = item.component
-            return (
-              <Route key={index} exact= {item.exact} path={item.path} element=  { <LayoutHome> <Page/> </LayoutHome>}/>
-            );
+            if (item.layout == "default"){
+              return (
+                <Route key={index} exact= {item.exact} path={item.path} element=  { <LayoutHome> <Page/> </LayoutHome>}/>
+              );
+            }
+            else{
+              return (
+                <Route key={index} exact= {item.exact} path={item.path} element=  { <Fragment> <Page/> </Fragment>}/>
+              );              
+            }
           })} 
         </Routes>
       </BrowserRouter>

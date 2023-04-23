@@ -9,26 +9,31 @@ const RouteHome = [
       exact: true,
       path: "/",
       component: HomePage,
+      layout: "default",
     },
     {
       exact: false,
       path: "/product",
       component: ProductList,
+      layout: "default",
     },
     {
       exact: false,
       path: "/checkout",
       component: Checkout,
+      layout: ""
     },
     {
       exact: false,
       path: "/cart",
       component: Order,
+      layout: "default",
     },
     {
       exact: false,
-      path: "/detail/:id",
+      path: "Product/detail/:id",
       component: DetailProduct,
+      layout: "default",
     },
   ];
 

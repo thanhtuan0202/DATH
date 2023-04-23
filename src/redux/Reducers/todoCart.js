@@ -9,6 +9,7 @@ const todoCart = createSlice({
   name: 'todos',
   initialState,
   reducers: {
+    
     fetchCart: (state, action) => {
       state.listCart = action.payload;
     },
@@ -18,19 +19,17 @@ const todoCart = createSlice({
       );
       if (itemsIndex >= 0) {
         state.cartItem[itemsIndex].cartQuantity += 1;
-        state.cartItem[itemsIndex].totalPriceItem =
-          state.cartItem[itemsIndex].cartQuantity *
-          state.cartItem[itemsIndex].price;
+        state.cartItem[itemsIndex].totalPriceItem =state.cartItem[itemsIndex].cartQuantity * state.cartItem[itemsIndex].giaBan;
       } else {
         const tempCart = {
           ...action.payload,
           cartQuantity: 1,
-          totalPriceItem: action.payload.price,
+          totalPriceItem: action.payload.giaBan,
         };
         state.cartItem.push(tempCart);
       }
       state.number += 1;
-      state.total += action.payload.price;
+      state.total += action.payload.giaBan * 1;
     },
     decreaseCart: (state, action) => {
       const itemsIndex = state.cartItem.findIndex(
@@ -38,14 +37,13 @@ const todoCart = createSlice({
       );
       state.cartItem[itemsIndex].cartQuantity -= 1;
       state.number -= 1;
-      state.total -= state.cartItem[itemsIndex].price;
+      state.total -= state.cartItem[itemsIndex].giaBan * 1;
       if (state.cartItem[itemsIndex].cartQuantity === 0) {
         state.cartItem = state.cartItem.filter(
           (item) => item.id !== action.payload.id
         );
       } else {
-        state.cartItem[itemsIndex].totalPriceItem -=
-          state.cartItem[itemsIndex].price;
+        state.cartItem[itemsIndex].totalPriceItem -= state.cartItem[itemsIndex].giaBan;
       }
     },
     removeCart(state, action) {

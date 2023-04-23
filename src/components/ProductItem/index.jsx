@@ -16,7 +16,7 @@ export default function Product(props) {
     <div className=" mb-5 col-5 ">
       <div className="food-card bg-white rounded-lg overflow-hidden mb-4 shadow">
         <div className="food-card_img position-relative">
-          <img src={item.productImage} alt="img" />
+          <img src={item.anh} alt="img" />
           <a href="#!">
             <i className="far fa-heart" />
           </a>
@@ -25,13 +25,13 @@ export default function Product(props) {
           <div className="food-card_title-section overflow-hidden">
             <h4 className="food-card_title">
               <a href="#!" className="text-dark">
-                <Link to={linkToDetail}> {item.productName} </Link>
+                <Link to={linkToDetail}> {item.ten} </Link>
               </a>
             </h4>
           </div>
             <div className="d-flex justify-content-between">
               <div className="food-card_price"> Price: 
-                <span> {item.price}</span>
+                <span> {item.giaBan}</span>
               </div>
               <div className="food-card_order-count">
                 <Button

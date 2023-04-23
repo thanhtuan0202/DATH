@@ -1,7 +1,7 @@
 import React from 'react';
 import './Checkout.css';
 import CheckoutForm from '../../../components/CheckoutForm';
-
+import CheckoutCart from '../../../components/CheckoutCart';
 function Checkout(props) {
   return (
     <div className="checkout">
@@ -11,11 +11,11 @@ function Checkout(props) {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-4">
             <CheckoutForm />
           </div>
-          <div className="col-md-6">
-            
+          <div className="col-8">
+            <CheckoutCart/>
           </div>
         </div>
       </div>

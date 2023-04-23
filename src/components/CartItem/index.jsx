@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/scope */
+
 import Button from '@mui/material/Button';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -24,37 +24,37 @@ export default function CartItem(props) {
     <tr >
       <td className="table-close-btn">
         <Button onClick={removeCartItem} variant="contained" color="error" className="mt-4">
-          <i class="fas fa-times"></i>
+          <i class="bi bi-trash3-fill"></i>
         </Button>
       </td>
       <td scope="row">
-        <img src={item.productImage} alt="img" style={{ maxWidth: 100 }} />
+        <img src={item.anh} alt="img" style={{ maxWidth: 100 }} />
       </td>
       <td className="item-name">
         <div className="details mt-3 pd-3">
-          <h3>{item.productName}</h3>
+          <h3>{item.ten}</h3>
         </div>
       </td>
       <td>
-        <h3 className="mt-3 pd-3">{item.price}</h3>
+        <h3 className="mt-3 pd-3">{item.giaBan}</h3>
       </td>
       <td className="table-quantity">
         <form>
-          <div className="quantity buttons_added d-flex justify-content-between mt-4">
+          <div className="grid row quantity buttons_added mt-4">
             <Button
               onClick={handleDecrease}
               variant="contained"
               color="success"
             >
-              <i class="fas fa-minus"></i>
+              <i class="bi bi-dash"></i>
             </Button>
-            <h4 style={{ paddingInline: '10px' }}>{item.cartQuantity}</h4>
+            <h4>{item.cartQuantity}</h4>
             <Button
               onClick={handleAddToCart}
               variant="contained"
               color="success"
             >
-              <i class="fas fa-plus"></i>
+              <i class="bi bi-plus"></i>
             </Button>
           </div>
         </form>

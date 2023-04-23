@@ -2,16 +2,16 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import './RemoveCart.scss';
 import { deleteCart } from '../../../redux/Reducers/todoCart';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function RemoveCart(props) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   
   const handleDeleteCart = () => {
     dispatch(deleteCart());
-    history.push('/');
+    navigate('/');
   };
   return (
     <div className="text-center pt-2">
