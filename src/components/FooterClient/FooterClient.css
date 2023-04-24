@@ -1,6 +1,8 @@
 .footer {
     padding: 20px 10px;
     background-color: #ffc42e;
+    background-size: cover;
+    margin: 1px 5px;
 }
 .footer__first li {
   list-style-type: none;

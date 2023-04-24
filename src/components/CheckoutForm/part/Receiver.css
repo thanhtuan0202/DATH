@@ -12,7 +12,7 @@
         font-weight: bold;
     }
 
-.receiverheader:after {
+.receiver__header:after {
         content: "";
         background: #fc9420;
         position: absolute;
@@ -22,21 +22,22 @@
         width: 80px;
     }
 
-.receiverbody {
+.receiver__body {
         padding: 4px;
     }
 
-.receiverform-control {
+.receiver__form-control {
         padding-left: 10px;
+        margin-bottom: 5px;
         height: 50px;
-        width: 80%;
+        width: 100%;
         border: 2px solid #c0c0c0;
         border-radius: 10px;
         font-size: 16px;
         background-color: transparent !important;
     }
 
-.receiverform-control:focus {
+.receiver__form-control:focus {
         color: #495057;
         background-color: #fff;
         border-color: #fcbf49;

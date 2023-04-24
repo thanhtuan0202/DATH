@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import './style.css';
+import './style.scss';
 import { Item, RemoveCart } from './part';
 import { deleteCart } from '../../redux/Reducers/todoCart';
 import ReactDOM from 'react-dom';
@@ -10,7 +10,7 @@ const createPayment = async (body) => {
   try {
     const { data } = await axios({
       method: 'POST',
-      url: 'http://localhost:5000/createNewOrder',
+      url: 'http://localhost:5000/create-order',
       data: body,
     });
     return {
@@ -28,6 +28,7 @@ const createPayment = async (body) => {
 };
 
 function CheckoutCart(props) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const listItemCart = useSelector((state) => state.todoCart.cartItem);
@@ -36,6 +37,8 @@ function CheckoutCart(props) {
   console.log('payment-method: ', paymentMethod);
   const [openPaypal, setOpenPaypal] = useState(false);
   useEffect(() => {}, [listItemCart]);
+
+  const [name,setName] = useState("");
   // const PaypaylButton = window.paypal.Buttons.driver('react', {
   //   React,
   //   ReactDOM,
@@ -76,6 +79,7 @@ function CheckoutCart(props) {
         payment_method: paymentMethod,
         numItems,
       };
+      //call
       const { errCode, errDetail } = await createPayment(data);
       if (errCode) {
         return alert(errDetail);
@@ -94,6 +98,36 @@ function CheckoutCart(props) {
   };
   return (
     <>
+    <div className="card receiver">
+      <div className="receiver__header">
+        <div>Thông tin nhận hàng</div>
+      </div>
+      <div>
+        <div className="card-body receiver__body">
+          <input
+            type="text"
+            className="receiver__form-control mt-2"
+            placeholder="Tên người nhận"
+            value = ""
+          />
+          <input
+            type="text"
+            className="receiver__form-control mt-2"
+            placeholder="Số điện thoại"
+          />
+          <input
+            type="text"
+            className="receiver__form-control mt-2"
+            placeholder="Địa chỉ người nhận"
+          />
+          <input
+            type="text"
+            className="receiver__form-control mt-2"
+            placeholder="Ghi chú nhận hàng"
+          />
+        </div>
+      </div>
+    </div>
       <div className="card checkout-cart mb-5">
         <div className="checkout-cart__header">
           <div>Các món đã chọn</div>

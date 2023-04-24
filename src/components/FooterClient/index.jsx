@@ -4,7 +4,7 @@ import { colors } from '@material-ui/core';
 
 function FooterClient() {
   return (
-  <div>
+  <div><br />
     <br />
     <br />
     <br />
