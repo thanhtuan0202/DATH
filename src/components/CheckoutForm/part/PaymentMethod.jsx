@@ -98,6 +98,27 @@ function PaymentMethod(props) {
               Paypal
             </label>
           </div>
+
+          <div className="payment-method__item">
+            <input
+              type="radio"
+              name="payment-method"
+              id="shipcod"
+              value={method}
+              checked={method === 'shipcod'}
+              onChange={handleChangeMethod}
+            />
+            <label htmlFor="shipcod">
+              <div className="d-inline-block" style={{ width: 45 }}>
+                <img
+                  src=""
+                  alt=""
+                  width="40px"
+                />
+              </div>
+              Ship COD
+            </label>
+          </div>
         </div>
       </div>
     </div>

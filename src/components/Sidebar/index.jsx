@@ -18,41 +18,45 @@ const SidebarItem = (props) => {
 };
 
 const Sidebar = (props) => {
-  const [Category, setCategory] = useState([])
+  const [category, setCategory] = useState([])
   const [loading, setLoading] = useState(false);
 
   const fetchCategory = async () =>{
     const res = await axios .get(
       "http://localhost:5000/read-list-category"
     )
-    .then(res => {
-      setCategory(res.data),
-      setLoading(true)}
-    )
+      setCategory(res.data);
+      setLoading(true);
   }
   useEffect(() => {
     fetchCategory();
   }, []);
+
   useEffect(() => {
-    console.log("ListCategory: ", Category);
+    console.log("ListCategory: ", category.data);
   }, [loading]);
 
-  return (
+  return loading === true ? (
     <div className="sidebar">
-        <div className="sidebar__h">
-          <h6> Tất cả danh mục </h6>
-        </div>
-      {sidebar_items.map((item, index) => (
-        
-        <Link to={item.route} key={index} class = "links">
+        <span className="sidebar__h">
+          <i class="bi bi-menu-down"></i>
+          <h6 > DANH MỤC SẢN PHẨM </h6>
+        </span>
+
+      {category.data.map((item, index) => (
+        <Link to='/' key={index} class = "links">
           <SidebarItem
-            title={item.display_name}
-            backgroundColor={item.color}
+            title={item.ten}
+            backgroundColor="#FFFFFF"
           />
         </Link>
       ))}
     </div>
-  );
+  ): (
+    <div> 
+      <p> Danh sách loại sản phẩm không tồn tại</p>
+    </div>
+  )
 };
 
 export default Sidebar;

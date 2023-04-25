@@ -1,5 +1,4 @@
 .detail-product{
-    background-color: rgb(192, 56, 56);
     margin: 0 5rem;
     height: 100%;
 }
@@ -17,4 +16,11 @@
 .productInfo{
     padding: 0.5rem 1.5rem;
     width: 100%;
+    min-height: 350px;
+}
+
+.productInfo > img{
+    width: 300px;
+    max-height: 300px;
+    margin: 0px 40px;
 }

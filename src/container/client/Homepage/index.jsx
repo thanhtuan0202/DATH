@@ -3,6 +3,8 @@ import Container from '@material-ui/core/Container';
 import Banner from "../../../components/Banner";
 
 export default function HomePage(){
+
+  
     return (
         <div>
           <Container>

@@ -2,8 +2,8 @@
 import HomePage from "../container/client/Homepage"
 import Checkout from "../container/client/Checkout"
 import Order from "../container/client/Order"
-import { ProductList } from "../components/ProductList";
 import DetailProduct from "../container/client/DetailProduct";
+import Product from "../container/client/Product";
 const RouteHome = [
     {
       exact: true,
@@ -14,7 +14,7 @@ const RouteHome = [
     {
       exact: false,
       path: "/product",
-      component: ProductList,
+      component: Product,
       layout: "default",
     },
     {

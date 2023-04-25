@@ -1,25 +1,39 @@
-import React from 'react';
-import './style.css';
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../redux/Reducers/todoCart';
+import React,{useState,useEffect} from "react";
+import "./style.css";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { fetchCart,addToCart } from "../../redux/Reducers/todoCart";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
-export default function Product(props) {
+export default function ProductItem(props) {
+  // const [loading, setLoading] = useState(false);
+  // const listCart = useSelector((state) => state.todoCart.listCart);
+  // const dispatch = useDispatch();
+  
+  // const fetchListCart = async () => {
+  //   const res = await axios .get(
+  //     "http://localhost:5000/read-list-product"
+  //   );
+  //   dispatch(fetchCart(res.data));
+  //   setLoading(true);
+  // };
+  // useEffect(() => {
+  //   fetchListCart();
+  // }, []);
+  // useEffect(() => {
+  //   console.log("ListCart: ", listCart);
+  // }, [loading]);
   const item = props.data;
   const linkToDetail = `detail/${item.id}`;
-  const dispatch = useDispatch();
   const addtoCart = () => {
     dispatch(addToCart(item));
   };
   return (
-    <div className=" mb-5 col-5 ">
-      <div className="food-card bg-white rounded-lg overflow-hidden mb-4 shadow">
-        <div className="food-card_img position-relative">
+    <div className="">
+      <div className="food-card">
+        <div className="food-card_img">
           <img src={item.anh} alt="img" />
-          <a href="#!">
-            <i className="far fa-heart" />
-          </a>
         </div>
         <div className="food-card_content">
           <div className="food-card_title-section overflow-hidden">
@@ -28,25 +42,33 @@ export default function Product(props) {
                 <Link to={linkToDetail}> {item.ten} </Link>
               </a>
             </h4>
+            <h2
+                style={{ fontSize: 15, fontWeight: 'bold'}}
+                className="food-card_author"
+              >
+                Số lượng: {item.soLuong + ' ' + item.donVi} 
+              </h2>
           </div>
-            <div className="d-flex justify-content-between">
-              <div className="food-card_price"> Price: 
-                <span> {item.giaBan}</span>
-              </div>
-              <div className="food-card_order-count">
-                <Button
-                  onClick={() => addtoCart()}
-                  sx={{ fontSize: 10 }}
-                  style={{ width: 120 }}
-                  color="warning"
-                  variant="contained"
-                >
-                  Thêm sản phẩm
-                </Button>
-              </div>
+          <div className="d-flex">
+            <div className="food-card_price">
+              {" "}
+              Giá bán:
+              <span> {item.giaBan + " VND"}</span>
+            </div>
+            <div className="food-card_order-count">
+              <Button
+                onClick={() => addtoCart()}
+                sx={{ fontSize: 10 }}
+                style={{ width: 120 }}
+                color="warning"
+                variant="contained"
+              >
+                Thêm sản phẩm
+              </Button>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }

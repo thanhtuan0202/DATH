@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './sidebar.css'
 const SidebarItem = props => {
 
     const active = props.active ? 'active' : ''

@@ -26,82 +26,91 @@ export default function DetailProduct(props) {
   };
   useEffect(() => {
     fetchProduct();
-  }, []); 
-  return  (
-    <div style={{ minHeight: '300px'}}>
-      {loading === true ? ( 
-      <div className="detail-product">
-        <div class="navbar-detail">
-          <Link to="/Product">
-            <i class="bi bi-chevron-left" style={{ fontsize: 100 }}></i>
-            Quay lại
-          </Link>
-        </div>
-        <div className="productInfo container">
-          <div className="row justify-content-center">
-            <div className="col-6">
-              <img src={product.data[0].anh} alt="img" />
-            </div>
-
-            <div className="col-6">
-              <h2
-                style={{
-                  fontSize: "35px",
-                  fontWeight: "500",
-                  marginBottom: "20px",
-                }}
-              >
-                {" "}
-                {product.data[0].ten}
-              </h2>
-              <div className="row" style={{ marginBottom: "10px" }}>
-                <div className="col-6">
-                  <h4
-                    style={{
-                      float: "left",
-                      fontSize: "16px",
-                    }}
-                  >
-                    Giá: {product.data[0].giaBan}
-                  </h4>
-                </div>
-                <div className="col-6">
-                  <h4
-                    style={{
-                      float: "right",
-                      fontSize: "16px",
-                    }}
-                  >
-                    Số lượng: {product.data[0].soLuong}
-                  </h4>
-                </div>
+  }, []);
+  return (
+    <div style={{ minHeight: "300px" }}>
+      {loading === true ? (
+        <div className="detail-product">
+          <div class="navbar-detail">
+            <Link to="/Product">
+              <i class="bi bi-chevron-left" style={{ fontsize: 100 }}></i>
+              Quay lại
+            </Link>
+          </div>
+          <div className="productInfo container">
+            <div className="row justify-content-center">
+              <div className="col-4">
+                <img
+                  src={product.data[0].anh}
+                  style={{
+                    width: "300px",
+                    maxheight: "300px",
+                    margir: "0px 40px",
+                  }}
+                  alt="img"
+                />
               </div>
-              <p
-                className="mt-3"
-                style={{
-                  fontSize: "15px",
-                  marginBottom: "10px",
-                }}
-              >
-                {product.data[0].moTa}
-              </p>
-              <Button
-                onClick={() => addtoCart()}
-                sx={{ fontSize: 10 }}
-                style={{ width: 120 }}
-                color="warning"
-                variant="contained"
-              >
-                Thêm sản phẩm
-              </Button>
+
+              <div className="col-4">
+                <h2
+                  style={{
+                    fontSize: "35px",
+                    fontWeight: "500",
+                    marginBottom: "20px",
+                  }}
+                >
+                  {" "}
+                  {product.data[0].ten}
+                </h2>
+                <div className="row" style={{ marginBottom: "10px" }}>
+                  <div className="col-4">
+                    <h4
+                      style={{
+                        float: "left",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Giá: {product.data[0].giaBan}
+                    </h4>
+                  </div>
+                  <div className="col-4">
+                    <h4
+                      style={{
+                        float: "right",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Số lượng: {product.data[0].soLuong}
+                    </h4>
+                  </div>
+                  <div className="col-4"> </div>
+                </div>
+                <p
+                  className="mt-3"
+                  style={{
+                    fontSize: "15px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {product.data[0].moTa}
+                </p>
+                <Button
+                  onClick={() => addtoCart()}
+                  sx={{ fontSize: 10 }}
+                  style={{ width: 120 }}
+                  color="warning"
+                  variant="contained"
+                >
+                  Thêm sản phẩm
+                </Button>
+              </div>
+              <div className="col-4"> </div>
             </div>
           </div>
         </div>
-      </div>
-    
-  ) : (
-    <div> Hiện không có sản phẩm.</div>
-  )}
-  </div>
+      ) : (
+        <div> Hiện không có sản phẩm.</div>
+      )}
+    </div>
   );
 }
