@@ -11,8 +11,7 @@ export default function DetailProduct(props) {
   const listCart = useSelector((state) => state.todoCart.listCart);
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  console.log(listCart.data[id - 1]);
+  
   const dispatch = useDispatch();
   const addtoCart = () => {
     dispatch(addToCart(listCart.data[id - 1]));
@@ -26,6 +25,7 @@ export default function DetailProduct(props) {
   };
   useEffect(() => {
     fetchProduct();
+    console.log("detail: " ,product)
   }, []);
   return (
     <div style={{ minHeight: "300px" }}>

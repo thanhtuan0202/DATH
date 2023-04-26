@@ -7,23 +7,23 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 export default function ProductItem(props) {
-  // const [loading, setLoading] = useState(false);
-  // const listCart = useSelector((state) => state.todoCart.listCart);
-  // const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const listCart = useSelector((state) => state.todoCart.listCart);
+  const dispatch = useDispatch();
   
-  // const fetchListCart = async () => {
-  //   const res = await axios .get(
-  //     "http://localhost:5000/read-list-product"
-  //   );
-  //   dispatch(fetchCart(res.data));
-  //   setLoading(true);
-  // };
-  // useEffect(() => {
-  //   fetchListCart();
-  // }, []);
-  // useEffect(() => {
-  //   console.log("ListCart: ", listCart);
-  // }, [loading]);
+  const fetchListCart = async () => {
+    const res = await axios .get(
+      "http://localhost:5000/read-list-product"
+    );
+    dispatch(fetchCart(res.data));
+    setLoading(true);
+  };
+  useEffect(() => {
+    fetchListCart();
+  }, []);
+  useEffect(() => {
+    console.log("ListCart: ", listCart);
+  }, [loading]);
   const item = props.data;
   const linkToDetail = `detail/${item.id}`;
   const addtoCart = () => {
@@ -39,7 +39,7 @@ export default function ProductItem(props) {
           <div className="food-card_title-section overflow-hidden">
             <h4 className="food-card_title">
               <a href="#!" className="text-dark">
-                <Link to={linkToDetail}> {item.ten} </Link>
+                <Link to={linkToDetail} key = {item.id}> {item.ten} </Link>
               </a>
             </h4>
             <h2

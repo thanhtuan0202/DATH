@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Navbar } from '../../components/Navbar/navbar';
+import Header from '../../components/Header/Header';
 import FooterClient from '../../components/FooterClient';
 function LayoutHome(props) {
     return (
       <div className="App">
-        <Navbar />
+        <Header />
         {props.children}
         <FooterClient />
       </div>
