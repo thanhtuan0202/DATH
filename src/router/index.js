@@ -4,12 +4,20 @@ import Checkout from "../container/client/Checkout"
 import Order from "../container/client/Order"
 import DetailProduct from "../container/client/DetailProduct";
 import Product from "../container/client/Product";
+import Login from "../container/client/Login";
+import Search from "../components/Search";
 const RouteHome = [
     {
       exact: true,
       path: "/",
       component: HomePage,
       layout: "default",
+    },    
+    {
+      exact: true,
+      path: "/login",
+      component: Login,
+      layout: "",
     },
     {
       exact: false,
@@ -33,6 +41,12 @@ const RouteHome = [
       exact: false,
       path: "Product/detail/:id",
       component: DetailProduct,
+      layout: "default",
+    },    
+    {
+      exact: false,
+      path: "/search",
+      component: Search,
       layout: "default",
     },
   ];

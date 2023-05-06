@@ -24,6 +24,7 @@ export default function ProductItem(props) {
   useEffect(() => {
     console.log("ListCart: ", listCart);
   }, [loading]);
+  
   const item = props.data;
   const linkToDetail = `detail/${item.id}`;
   const addtoCart = () => {

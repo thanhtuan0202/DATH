@@ -1,18 +1,11 @@
 import React from 'react';
 import './FooterClient.css';
-import { colors } from '@material-ui/core';
 
 function FooterClient() {
   return (
-  <div><br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div className="container-fluid footer">
-      <div className="container-lg">
-        <div className="row" >
-
+  <div>
+    <div className="footer">
+      <div className="container-lg row container-fluid">
           <div className="col-lg-4 footer__first">
             <h3 className="footer__title">Chính sách</h3>
             <ul className="footer__links">
@@ -61,7 +54,6 @@ function FooterClient() {
             </div>
         </div>
       </div>
-    </div>
   </div>
   );
 }

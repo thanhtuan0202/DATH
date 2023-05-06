@@ -1,11 +1,13 @@
+
 .header {
-  background-color: #ffd4a4;
+  background-color: #ffc42e;
   padding: 0 0 !important;
   transition: background-color;
 }
+
 .container-fluid {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .header__scrolled {
   background-color: #fc9420;
@@ -31,8 +33,9 @@
 }
 .header__ctn {
   display: flex;
-  justify-content: flex-start;
-  padding: 15px 10px;
+  justify-content: space-between;
+  padding: 5px 5px;
+  align-items: center;
 }
 .header__ctn > div > .link {
   display: block;
@@ -43,7 +46,7 @@
   text-decoration: none;
 }
 .header__ctn > div > .link:hover {
-  color: #e85d04;
+  color: #ffffff;
 }
 .header__ctn > div > .link > i {
   display: block;
@@ -55,7 +58,7 @@
 .header__ctn > div > .link > .qty {
   position: absolute;
   right: 25px;
-  top: -10px;
+  top: -5px;
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -78,7 +81,7 @@
   transition: all 0.35s ease;
 }
 .header__link:hover {
-  color: #e85d04 !important;
+  color: #ffffff !important;
 }
 .header__logout button {
   color: #333;
@@ -87,4 +90,23 @@
   height: 40px;
   border-radius: 20px;
   border: 1px solid #aaa;
+}
+
+.receiver__form-control {
+  padding-left: 5px;
+  margin-bottom: 5px;
+  height: 30px;
+  width: 100%;
+  border: 2px solid #c0c0c0;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: transparent !important;
+}
+
+.receiver__form-control:focus{
+  color: #495057;
+  background-color: #fff;
+  border-color: #494949;
+  outline: 0;
+  box-shadow: none;
 }

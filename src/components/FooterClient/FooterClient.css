@@ -3,14 +3,12 @@
     background-color: #ffc42e;
     background-size: cover;
     margin: 1px 5px;
+    height: auto;
 }
 .footer__first li {
   list-style-type: none;
 }
-.row{
-  display: flex;
-  justify-content: space-between;
-}
+
 .footer__title {
       color: rgb(0, 0, 0);
       text-transform: uppercase;

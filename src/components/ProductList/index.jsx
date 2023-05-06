@@ -6,9 +6,8 @@ import "./style.css";
 
 export const ProductList = (props) => {
   const chosen = props.data
-
-const [product, setProduct] = useState([]);
-const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
   const fetchProduct = async () =>{
     const res = await axios .get(
         "http://localhost:5000/list-product-into-category"

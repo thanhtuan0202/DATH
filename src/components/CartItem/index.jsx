@@ -39,8 +39,12 @@ export default function CartItem(props) {
         <h3 className="mt-3 pd-3">{item.giaBan}</h3>
       </td>
       <td className="table-quantity">
-        <form>
-          <div className="grid row quantity buttons_added mt-4">
+          <div className="mt-4 pd-4 container row"
+          style={{
+            display:"flex",
+            justifyContent:"space-around",
+            alignItems: "center"
+          }}>
             <Button
               onClick={handleDecrease}
               variant="contained"
@@ -57,7 +61,6 @@ export default function CartItem(props) {
               <i class="bi bi-plus"></i>
             </Button>
           </div>
-        </form>
       </td>
       <td>
         <h3 className="mt-3 pd-3">{item.totalPriceItem}</h3>

@@ -4,7 +4,7 @@ import CartItem from "../CartItem";
 import TotalItemOrder from "../TotalItemOrder";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import "./style.css";
+import "./cart.css";
 export default function Cart() {
   const cart = useSelector((state) => state.todoCart.cartItem);
   console.log(cart);

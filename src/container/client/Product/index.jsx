@@ -51,7 +51,7 @@ const Product = () => {
                         borderBottom: index === chosen ? "" : "solid 1px #B5D2E8",
                     }}
                     size="large"
-                    onClick={() => {setChosen(index); setCurrent(item.ten)}}
+                    onClick={() => {setChosen(index)}}
                     variant={index === chosen ? "contained" : "text"}
                 >
                     {item.ten}

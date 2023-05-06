@@ -1,16 +1,17 @@
 
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/products/logoBK.png";
-
-import "./navbar.css"
-import { Navigate } from "react-router-dom";
+import axios from "axios";
+import "./navbar.css";
 import { Button } from "@mui/material";
 import { delLoginAction } from "./../../redux/Reducers/loginUser";
 
 function Header() {
   const number = useSelector((state) => state.todoCart.number);
+  const [name, setName] = useState("");
+
   const  navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginUser);
@@ -22,9 +23,26 @@ function Header() {
     navigate("/");
   };
 
+  const handleChange = (e) => {
+    // e.preventDefault();
+    setName(e.target.value);
+  };
+  const handleSearch = (e) => {
+    const nameFind = {
+      "nameFind" : name,
+    }
+    localStorage.setItem('search', JSON.stringify(nameFind));
+    if(window.location.pathname !== "/search"){
+      navigate("/search");
+    }
+    else{
+      navigate(0)
+    } 
+  };
+
   return (
     <nav class="navbar fixed-top navbar-expand-lg header" id="mainNavbar">
-      <div class="container-fluid d-flex order-lg-1">
+      <div class="container-fluid d-flex order-lg-1 header-item">
         <div className="header__logo">
           <Link to="/">
             <img src={logo} alt />
@@ -55,8 +73,32 @@ function Header() {
         </div>
 
         <div className="header__ctn order-lg-2">
+          <div className="container row">
+          <div className="col-9">
+            <input
+              type="text"
+              id="search"
+              className="receiver__form-control mt-2"
+              placeholder="Tìm kiếm sản phẩm"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-3">
+            <button
+              className="btn"
+              onClick={
+                // useEffect(() => {
+                //   handleSearch();
+                // })
+                handleSearch
+              }
+            >
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
           <div>
-            <Link to="/order" className="link">
+            <Link to="/cart" className="link">
               <i class="bi bi-cart"></i>
               <span>Giỏ hàng</span>
               <div className="qty">{number}</div>
@@ -65,7 +107,7 @@ function Header() {
           <div>
             <Link to={user.isLogin ? "/user" : "/login"} className="link">
               <i class="bi bi-person"></i>
-              {user.isLogin ? user.userInfo.username : "Đăng nhập"}
+              {user.isLogin ? user.userInfo.name : "Đăng nhập"}
             </Link>
           </div>
 
@@ -79,18 +121,6 @@ function Header() {
             ""
           )}
         </div>
-{/* 
-        <button
-          class="navbar-toggler header__btn"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="bi bi-layout-text-sidebar"></i>
-        </button> */}
       </div>
     </nav>
   );
