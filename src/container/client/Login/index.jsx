@@ -46,7 +46,6 @@ function Login() {
         "http://localhost:5000/login-account",
         login
       );
-      console.log("result of api: " , result);
       if (result.data) {
         alert("Đăng nhập thành công!");
         localStorage.setItem("user", JSON.stringify(result.data));

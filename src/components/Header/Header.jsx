@@ -78,7 +78,7 @@ function Header() {
             <input
               type="text"
               id="search"
-              className="receiver__form-control mt-2"
+              className="navbar-search mt-2"
               placeholder="Tìm kiếm sản phẩm"
               onChange={handleChange}
             />
@@ -87,9 +87,6 @@ function Header() {
             <button
               className="btn"
               onClick={
-                // useEffect(() => {
-                //   handleSearch();
-                // })
                 handleSearch
               }
             >
@@ -107,7 +104,7 @@ function Header() {
           <div>
             <Link to={user.isLogin ? "/user" : "/login"} className="link">
               <i class="bi bi-person"></i>
-              {user.isLogin ? user.userInfo.name : "Đăng nhập"}
+              {/* {user.isLogin ? user.userInfo.name : "Đăng nhập"} */}
             </Link>
           </div>
 

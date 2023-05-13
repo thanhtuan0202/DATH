@@ -3,7 +3,11 @@ import ProductItem from "../ProductItem";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./search.css";
+
+
 export default function Search(props) {
+
+  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [nameFind, setNameFind] = useState([]);
@@ -30,10 +34,19 @@ export default function Search(props) {
       <div
         style={{
           fontSize: "10px",
-          margin: "15px 5px"
+          margin: "15px 5px",
         }}
       >
         <h1>Kết quả tìm kiếm cho "{nameFind.nameFind}"</h1>
+      </div>
+      <div
+        style={{
+          fontSize: "16px",
+          margin: "15px 5px",
+          fontFamily: "roboto"
+        }}
+      >
+        <p> Hiển thị của {data.productResult.length} kết quả</p>
       </div>
       <div className="grid">
         {data.productResult.map((product, index) => (

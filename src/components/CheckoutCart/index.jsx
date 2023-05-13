@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.scss";
 import { Item, RemoveCart } from "./part";
 import { deleteCart } from "../../redux/Reducers/todoCart";
-import ReactDOM from "react-dom";
+import axios from "axios";
 // Call api
 const createPayment = async (body) => {
+  console.log("body: ",body);
   try {
-    const { data } = await axios({
-      method: "POST",
-      url: "http://localhost:5000/create-order",
-      data: body,
-    });
+    // const { data } = await axios({
+    //   method: "POST",
+    //   url: "http://localhost:5000/create-order",
+    //   data: body,
+    // });
+    const {data} = await axios .post(
+      "http://localhost:5000/create-order",
+      body
+    );
+    console.log(data)
     return {
-      errCode: data.errCode,
-      errDetail: data.errDetail,
-      result: data.data,
+      errCode: data.success,
+      errDetail: data.message,  
     };
   } catch (error) {
     return {
-      errCode: 1,
+      errCode: false,
       errDetail: "System error",
       result: null,
     };
@@ -28,6 +33,7 @@ const createPayment = async (body) => {
 };
 
 function CheckoutCart(props) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const listItemCart = useSelector((state) => state.todoCart.cartItem);
@@ -37,67 +43,62 @@ function CheckoutCart(props) {
   const [openPaypal, setOpenPaypal] = useState(false);
   useEffect(() => {}, [listItemCart]);
 
+  const current = new Date();
+  const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [notes, setNotes] = useState("");
-  const [mail, setMail] = useState("");
-
-  const current = new Date();
-  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-
-  // const PaypaylButton = window.paypal.Buttons.driver('react', {
-  //   React,
-  //   ReactDOM,
-  // });
-  function createOrder(data, actions) {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: total,
-          },
-        },
-      ],
-    });
-  }
+  const [data, setData] = useState({
+    tenKhach : "",
+    SDT: "",
+    diaChi: "",
+    hinhThucThanhToan: "",
+    ngayTao: "",
+    idTaiKhoan: "1",
+    listProduct: [],    
+  });
 
   const onApprove = async (data, actions) => {
     await handleSubmitOrder();
     return actions.order.capture();
   };
-
+  const handleChangeName = (e) => {
+    // e.preventDefault();
+    setName(e.target.value);
+  };
+  const handleChangePhone = (e) => {
+    // e.preventDefault();
+    setPhone(e.target.value);
+  };
+  const handleChangeAddress = (e) => {
+    // e.preventDefault();
+    setAddress(e.target.value);
+  };
   const handleSubmitOrder = async () => {
-    setName(document.getElementById("name").value);
-    setPhone(document.getElementById("phone").value);
-    setAddress(document.getElementById("address").value);
-    setMail(document.getElementById("email").value)
-    setNotes(document.getElementById("note").value);
+    // setName(document.getElementById("name").value);
+    // setPhone(document.getElementById("phone").value);
+    // setAddress(document.getElementById("address").value);
 
-    // console.log(name, phone, address, mail, notes)
     const items = listItemCart.map((item) => {
       return [
         item.id,
         item.cartQuantity,
       ];
     });
-    const numItems = listItemCart.length;
-    const data = {
-      name,
-      phone,
-      address,
-      payment_method: paymentMethod,
-      date,
-      items,
-      "id": "1",
-      // total_amount: total,
-      // numItems,
-    };
-    //call
+    Object.assign(data,{
+      tenKhach : name,
+      SDT: phone,
+      diaChi: address,
+      hinhThucThanhToan: paymentMethod,
+      ngayTao: date,
+      idTaiKhoan: "1",
+      listProduct: items,
+    })
     console.log(data)
     console.log(items)
+
     const { errCode, errDetail } = await createPayment(data);
-    if (errCode) {
+    if (!errCode) {
       return alert(errDetail);
     }
     dispatch(deleteCart());
@@ -105,13 +106,13 @@ function CheckoutCart(props) {
     return navigate("/");
   };
 
-  const handleCheckPaymentMethod = () => {
-    if (paymentMethod === "paypal") {
-      setOpenPaypal(true);
-    } else {
-      handleSubmitOrder();
-    }
-  };
+  // const handleCheckPaymentMethod = () => {
+  //   if (paymentMethod === "paypal") {
+  //     setOpenPaypal(true);
+  //   } else {
+  //     handleSubmitOrder();
+  //   }
+  // };
   return (
     <>
       <div className="card receiver">
@@ -125,30 +126,21 @@ function CheckoutCart(props) {
               id="name"
               className="receiver__form-control mt-2"
               placeholder="Tên người nhận"
+              onChange={handleChangeName}
             />
             <input
               type="text"
               id="phone"
               className="receiver__form-control mt-2"
               placeholder="Số điện thoại"
-            />
-            <input
-              type="text"
-              id="email"
-              className="receiver__form-control mt-2"
-              placeholder="Email"
+              onChange={handleChangePhone}
             />
             <input
               type="text"
               id="address"
               className="receiver__form-control mt-2"
               placeholder="Địa chỉ người nhận"
-            />
-            <input
-              type="text"
-              id="note"
-              className="receiver__form-control mt-2"
-              placeholder="Ghi chú nhận hàng"
+              onChange={handleChangeAddress}
             />
           </div>
         </div>
@@ -179,14 +171,6 @@ function CheckoutCart(props) {
           </button>
         </div>
       </div>
-      {/* {openPaypal && paymentMethod === 'paypal' && (
-        <div className="card checkout-cart">
-          <PaypaylButton
-            createOrder={(data, actions) => createOrder(data, actions)}
-            onApprove={(data, actions) => onApprove(data, actions)}
-          />
-        </div>
-      )} */}
       <RemoveCart />
     </>
   );

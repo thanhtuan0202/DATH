@@ -31,7 +31,6 @@ const Product = () => {
     console.log("ListCategory: ", category.data);
   }, [loading]);
 
-
   return loading === true ? (
     <>
     <div className="grid-container"> 

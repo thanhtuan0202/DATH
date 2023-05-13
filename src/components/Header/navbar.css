@@ -92,7 +92,7 @@
   border: 1px solid #aaa;
 }
 
-.receiver__form-control {
+.navbar-search {
   padding-left: 5px;
   margin-bottom: 5px;
   height: 30px;
@@ -103,7 +103,7 @@
   background-color: transparent !important;
 }
 
-.receiver__form-control:focus{
+.navbar-search:focus{
   color: #495057;
   background-color: #fff;
   border-color: #494949;

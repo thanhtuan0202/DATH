@@ -5,6 +5,13 @@ const initialState = {
   listCart: [],
   total: 0,
 };
+if (localStorage.getItem('cart') === null){
+  localStorage.setItem('cart', JSON.stringify(initialState));
+}
+else{
+  // initialState =  JSON.parse(localStorage.getItem('cart'));
+  Object.assign(initialState,JSON.parse(localStorage.getItem('cart')))
+}
 const todoCart = createSlice({
   name: 'todos',
   initialState,
@@ -30,6 +37,7 @@ const todoCart = createSlice({
       }
       state.number += 1;
       state.total += action.payload.giaBan * 1;
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     decreaseCart: (state, action) => {
       const itemsIndex = state.cartItem.findIndex(
@@ -45,6 +53,7 @@ const todoCart = createSlice({
       } else {
         state.cartItem[itemsIndex].totalPriceItem -= state.cartItem[itemsIndex].giaBan;
       }
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     removeCart(state, action) {
       const itemsIndex = state.cartItem.findIndex(
@@ -55,16 +64,17 @@ const todoCart = createSlice({
       state.cartItem = state.cartItem.filter(
         (item) => item.id !== action.payload.id
       );
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     deleteCart(state, action) {
-      // Delete cart when click "Xoa don hang"
+      // Delete cart when click "Xoa don hang"  
       state.number = 0;
       state.total = 0;
       state.cartItem = [];
+      localStorage.setItem('cart', JSON.stringify(state));
     },
   },
 });
-
 const { actions, reducer } = todoCart;
 export const { addToCart, removeCart, fetchCart, decreaseCart, deleteCart } =
   actions;
