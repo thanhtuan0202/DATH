@@ -28,7 +28,7 @@ export default function DetailProduct(props) {
     console.log("detail: " ,product)
   }, []);
   return (
-    <div style={{ minHeight: "300px" }}>
+    <div style={{ minHeight: "505px" }}>
       {loading === true ? (
         <div className="detail-product">
           <div class="navbar-detail">
@@ -63,7 +63,7 @@ export default function DetailProduct(props) {
                   {product.data[0].ten}
                 </h2>
                 <div className="row" style={{ marginBottom: "10px" }}>
-                  <div className="col-4">
+                  <div className="col-6">
                     <h4
                       style={{
                         float: "left",
@@ -83,7 +83,6 @@ export default function DetailProduct(props) {
                       Số lượng: {product.data[0].soLuong}
                     </h4>
                   </div>
-                  <div className="col-4"> </div>
                 </div>
                 <p
                   className="mt-3"

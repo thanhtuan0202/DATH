@@ -101,12 +101,12 @@ function Header() {
               <div className="qty">{number}</div>
             </Link>
           </div>
-          <div>
+          {/* <div>
             <Link to={user.isLogin ? "/user" : "/login"} className="link">
               <i class="bi bi-person"></i>
-              {/* {user.isLogin ? user.userInfo.name : "Đăng nhập"} */}
+              {user.isLogin ? user.userInfo.name : "Đăng nhập"}
             </Link>
-          </div>
+          </div> */}
 
           {user.isLogin ? (
             <div className="header__logout" title="Đăng xuất">
