@@ -1,9 +1,7 @@
-
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/products/logoBK.png";
-import axios from "axios";
 import "./navbar.css";
 import { Button } from "@mui/material";
 import { delLoginAction } from "./../../redux/Reducers/loginUser";
@@ -12,7 +10,7 @@ function Header() {
   const number = useSelector((state) => state.todoCart.number);
   const [name, setName] = useState("");
 
-  const  navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginUser);
 
@@ -29,15 +27,14 @@ function Header() {
   };
   const handleSearch = (e) => {
     const nameFind = {
-      "nameFind" : name,
-    }
-    localStorage.setItem('search', JSON.stringify(nameFind));
-    if(window.location.pathname !== "/search"){
+      nameFind: name,
+    };
+    localStorage.setItem("search", JSON.stringify(nameFind));
+    if (window.location.pathname !== "/search") {
       navigate("/search");
+    } else {
+      navigate(0);
     }
-    else{
-      navigate(0)
-    } 
   };
 
   return (
@@ -47,17 +44,15 @@ function Header() {
           <Link to="/">
             <img src={logo} alt />
           </Link>
-          <div style={{margin: "0px 2px"}}>
-              <h1>BK Store</h1>
-           </div>
+          <div style={{ margin: "0px 2px" }}>
+            <h1>BK Store</h1>
+          </div>
         </div>
 
         <div
           class="collapse navbar-collapse order-lg-2"
           id="navbarNavAltMarkup"
-          style = {{
-
-          }}
+          style={{}}
         >
           <div class="navbar-nav">
             <Link to="/" className="header__link nav-link">
@@ -72,28 +67,23 @@ function Header() {
           </div>
         </div>
 
-        <div className="header__ctn order-lg-2">
-          <div className="container row">
-          <div className="col-9">
-            <input
-              type="text"
-              id="search"
-              className="navbar-search mt-2"
-              placeholder="Tìm kiếm sản phẩm"
-              onChange={handleChange}
-            />
+        <div className="header__ctn order-lg-2" >
+          <div className="container row" >
+            <div className="col-9" style={{padding: "0px"}}>
+              <input
+                type="text"
+                id="search"
+                className="navbar-search mt-2"
+                placeholder="Tìm kiếm sản phẩm"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-3" style={{padding: "2px"}}>
+              <button className="btn" onClick={handleSearch}>
+                Tìm kiếm
+              </button>
+            </div>
           </div>
-          <div className="col-3">
-            <button
-              className="btn"
-              onClick={
-                handleSearch
-              }
-            >
-              Tìm kiếm
-            </button>
-          </div>
-        </div>
           <div>
             <Link to="/cart" className="link">
               <i class="bi bi-cart"></i>

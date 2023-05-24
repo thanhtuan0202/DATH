@@ -7,7 +7,6 @@ import "./search.css";
 
 export default function Search(props) {
 
-  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [nameFind, setNameFind] = useState([]);
@@ -15,7 +14,7 @@ export default function Search(props) {
     setNameFind(JSON.parse(localStorage.getItem("search")));
   });
   const fetchSearch = async () => {
-    const res = await axios.post(
+    const res = await axios .post(
       "http://localhost:5000/find-product-by-name",
       nameFind
     );
