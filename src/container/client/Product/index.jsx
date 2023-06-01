@@ -1,13 +1,8 @@
 import React,{useEffect,useState } from "react";
 import { Button } from "@mui/material";
-import { Link} from "react-router-dom";
 import axios from "axios";
 import "./pro_style.css";
-import ProductItem from "../../../components/ProductItem";
 import { ProductList } from "../../../components/ProductList";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchCart } from "../../../redux/Reducers/todoCart";
-
 
 const Product = () => {
       

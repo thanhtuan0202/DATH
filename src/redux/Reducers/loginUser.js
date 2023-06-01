@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 if (localStorage.getItem('user'))
 {
     var checkLogin = true;
-    var userInfo = JSON.parse(localStorage.getItem('user')).customer;
+    var userInfo = JSON.parse(localStorage.getItem('user')).result;
 }
 
 export const loginUserSlice = createSlice ({

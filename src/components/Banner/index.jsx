@@ -43,8 +43,8 @@ const Banner = () => {
         src={images[currentIndex]}
         alt={`Slide ${currentIndex + 1}`}
         style={{
-          height: "560px",
-          width: "1100px",
+          height: "700px",
+          width: "1440px",
         }}
       />
       <button onClick={goToNextSlide} style={{backgroundColor: "white"}}>

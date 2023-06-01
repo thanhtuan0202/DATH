@@ -6,6 +6,9 @@ import DetailProduct from "../container/client/DetailProduct";
 import Product from "../container/client/Product";
 import Login from "../container/client/Login";
 import Search from "../components/Search";
+
+import AdminHomePage from "../container/admin";
+import DanhSachPage from "../container/admin/Page/DanhSachDonHang";
 const RouteHome = [
     {
       exact: true,
@@ -13,12 +16,6 @@ const RouteHome = [
       component: HomePage,
       layout: "default",
     },    
-    {
-      exact: true,
-      path: "/login",
-      component: Login,
-      layout: "",
-    },
     {
       exact: false,
       path: "/product",
@@ -49,6 +46,27 @@ const RouteHome = [
       component: Search,
       layout: "default",
     },
+
   ];
 
-  export {RouteHome}
+  const RouteAdmin = [
+    {
+      exact: false,
+      path: "/admin",
+      component: AdminHomePage,
+      layout: "default",
+    },    
+    {
+      exact: true,
+      path: "/admin/login",
+      component: Login,
+      layout: "",
+    },
+    {
+      exact: false,
+      path: "admin/danh-sach",
+      component: DanhSachPage,
+      layout: "default",
+    }, 
+  ];
+  export {RouteHome, RouteAdmin}
