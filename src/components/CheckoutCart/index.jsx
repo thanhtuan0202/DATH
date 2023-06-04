@@ -31,7 +31,24 @@ const createPayment = async (body) => {
     };
   }
 };
-
+const updProduct = async(body) => {
+  try {
+    const {data} = await axios .post(
+      "http://localhost:5000/update-product",
+      body
+    );
+    return {
+      errCode: data.success,
+      errDetail: data.message,  
+    };
+  } catch (error) {
+    return {
+      errCode: false,
+      errDetail: "System error",
+      result: null,
+    };
+  }  
+}
 function CheckoutCart(props) {
 
   const dispatch = useDispatch();
@@ -75,11 +92,10 @@ function CheckoutCart(props) {
     setAddress(e.target.value);
   };
   const handleSubmitOrder = async () => {
-    // setName(document.getElementById("name").value);
-    // setPhone(document.getElementById("phone").value);
-    // setAddress(document.getElementById("address").value);
-
     const items = listItemCart.map((item) => {
+      if (item.cartQuantity > item.soLuong){
+        item.cartQuantity = item.soLuong;
+      }
       return [
         item.id,
         item.cartQuantity,
@@ -94,25 +110,25 @@ function CheckoutCart(props) {
       idTaiKhoan: "1",
       listProduct: items,
     })
-    console.log(data)
-    console.log(items)
 
     const { errCode, errDetail } = await createPayment(data);
     if (!errCode) {
       return alert(errDetail);
     }
+    listItemCart.map(async(item, index) => {
+      Object.assign(data, item)
+      data.soLuong = data.soLuong - data.cartQuantity;
+      const { errCode, errDetail } = await updProduct(data);
+      if (!errCode) {
+        return alert(errDetail);
+      }
+      console.log(errDetail);
+    })
     dispatch(deleteCart());
     alert("Thanh toán thành công");
     return navigate("/");
   };
 
-  // const handleCheckPaymentMethod = () => {
-  //   if (paymentMethod === "paypal") {
-  //     setOpenPaypal(true);
-  //   } else {
-  //     handleSubmitOrder();
-  //   }
-  // };
   return (
     <>
       <div className="card receiver">
@@ -165,7 +181,6 @@ function CheckoutCart(props) {
           <button
             className="btn checkout-cart__footer__btn"
             onClick={handleSubmitOrder}
-            // disabled={(openPaypal && paymentMethod === 'paypal') || total === 0}
           >
             Đặt hàng
           </button>

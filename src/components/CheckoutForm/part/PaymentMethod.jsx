@@ -37,26 +37,7 @@ function PaymentMethod(props) {
               Momo
             </label>
           </div>
-          <div className="payment-method__item">
-            <input
-              type="radio"
-              name="payment-method"
-              id="zalopay"
-              value={method}
-              checked={method === 'zalopay'}
-              onChange={handleChangeMethod}
-            />
-            <label htmlFor="zalopay">
-              <div className="d-inline-block" style={{ width: 45 }}>
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/vi/7/77/ZaloPay_Logo.png"
-                  alt="zalo-pay-icon"
-                  width="40px"
-                />
-              </div>
-              ZaloPay
-            </label>
-          </div>
+
           <div className="payment-method__item">
             <input
               type="radio"
@@ -69,12 +50,12 @@ function PaymentMethod(props) {
             <label htmlFor="shopeepay">
               <div className="d-inline-block" style={{ width: 45 }}>
                 <img
-                  src="https://seeklogo.com/images/S/shopee-pay-logo-2217CDC100-seeklogo.com.png"
+                  src="https://th.bing.com/th/id/R.40b34cc7214ad54ebd38c121e76bfea1?rik=6EiuP6UW6Y4EzQ&riu=http%3a%2f%2fwww.mlsisland.com%2fvisa_logo_7.gif&ehk=p1p%2b14LcVZpd8TUwmQoX7AnKWolT2gpGwleprtwyN1M%3d&risl=&pid=ImgRaw&r=0"
                   alt="zalo-pay-icon"
                   width="40px"
                 />
               </div>
-              ShopeePay
+              Credit Card
             </label>
           </div>
           <div className="payment-method__item">

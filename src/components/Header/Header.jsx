@@ -60,7 +60,7 @@ function Header() {
             <Link to="/product" className="header__link nav-link">
               Sản phẩm
             </Link>
-            <Link to="/" className="header__link nav-link">
+            <Link to="/descript" className="header__link nav-link">
               Giới thiệu
             </Link>
           </div>

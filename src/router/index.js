@@ -6,7 +6,7 @@ import DetailProduct from "../container/client/DetailProduct";
 import Product from "../container/client/Product";
 import Login from "../container/client/Login";
 import Search from "../components/Search";
-
+import Descript from "../components/Descript";
 import AdminHomePage from "../container/admin";
 import DanhSachPage from "../container/admin/Page/DanhSachDonHang";
 const RouteHome = [
@@ -44,6 +44,12 @@ const RouteHome = [
       exact: false,
       path: "/search",
       component: Search,
+      layout: "default",
+    },
+    {
+      exact: false,
+      path: "/descript",
+      component: Descript,
       layout: "default",
     },
 
